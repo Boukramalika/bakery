@@ -7,7 +7,7 @@ class Liste extends React.Component{
     render (){
         return (
             <div>
-                Liste
+                List
             </div>
         )
     }

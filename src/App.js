@@ -1,53 +1,51 @@
 import React from 'react'
-import Add from "./components/Add.jsx"
-import Liste from "./components/Liste.jsx"
-import Pay from "./components/Pay.jsx"
-import Onglet from "./components/Onglet"
 import './App.css'
-import 'bootstrap/dist/css/bootstrap.min.css'
-
-
-
+import Onglet from "./components/Onglet.jsx"
+import Add from './components/Add'
+import List from './components/List'
+import Pay from './components/Pay'
 class App extends React.Component {
-  constructor() {
+  constructor () {
     super()
     this.state = {
-      activeTab: "add",
-      items: []
+      activeTab: 'add',
+      items: [],
     }
-
   }
-  buttonClick = (e) => {
-    console.log(e.target.name)
+  onClick = (e) => {
+    this.setState({ selectedTab: e.target.name })
   }
-
-  render() {
+  addItem =(name,price)=>{
+    let item = {};
+    item.name = name;
+    item.price = price;
+    this.setState.item.push(item);
+    console.log(this.state.item);
+  }
+  render () {
     return (
-      <div className="App">
-
-        <Onglet
-          isSelected={this.state.activeTab === 'Add'}
-          onClick={() => this.setState({ activeTab: 'Add' })} >
+      <div className="container">
+        <Onglet 
+        isSelected={this.state.activeTab === "add"} 
+        onClick={()=> this.setState({activeTab:"add"})}>
           Add
-          </Onglet>
-
-        <Onglet
-          isSelected={this.state.activeTab === 'Liste'}
-          onClick={() => this.setState({ activeTab: 'Liste' })} >
-          Liste
-          </Onglet>
-
-        <Onglet
-          isSelected={this.state.activeTab === 'Pay'}
-          onClick={() => this.setState({ activeTab: 'Pay' })} >
+        </Onglet>
+        <Onglet 
+        isSelected={this.state.activeTab === "list"} 
+        onClick={()=> this.setState({activeTab:"list"})}>
+          List
+        </Onglet>
+        <Onglet 
+        isSelected={this.state.activeTab === "pay"} 
+        onClick={()=> this.setState({activeTab:"pay"})}>
           Pay
-          </Onglet>
-
-        {this.state.activeTab === 'Add' && <Add />}
-
+        </Onglet>
+        <br/>
+        {this.state.activeTab === 'add' && <Add addItem={this.addItem}/>}
+        {this.state.activeTab === 'list' && <List/>}
+        {this.state.activeTab === 'pay' && <Pay/>}
       </div>
     )
   }
 }
-
-export default App;
+export default App
