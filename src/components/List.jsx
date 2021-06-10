@@ -8,6 +8,10 @@ class Liste extends React.Component{
         return (
             <div>
                 List
+                {this.props.items}
+                <ul>
+                    
+                </ul>
             </div>
         )
     }
